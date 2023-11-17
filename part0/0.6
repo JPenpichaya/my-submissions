@@ -1,0 +1,30 @@
+```mermid
+sequenceDiagram
+    participant browser
+    participant server
+    
+  browser --> POST https://studies.cs.helsinki.fi/exampleapp/new_note
+  activate
+  server -- > 302 status code
+  deactivate
+
+  browser --> GET https://studies.cs.helsinki.fi/exampleapp/notes
+  activate
+  server --> HTML file
+  deactivate
+
+  brower --> GET https://studies.cs.helsinki.fi/exampleapp/main.css
+  activate
+  server --> css file
+  deactivate
+
+    browser-->server: GET https://studies.cs.helsinki.fi/exampleapp/main.js
+    activate server
+    server-->>browser: JavaScript file
+    deactivate server
+
+    https://studies.cs.helsinki.fi/exampleapp/data.json
+    activate server
+    server-->browser: ["content": "hi", "date": "2023-11-16T16:41:20.910Z", ... ]
+    deactivate server
+```
