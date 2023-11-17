@@ -3,6 +3,11 @@ sequenceDiagram
     participant browser
     participant server
 
+    browser -->server: POST https://studies.cs.helsinki.fi/exampleapp/new_note
+    active servere
+    server-->browser: 302 Found URL redirect
+    deactive
+
     browser-->server: GET https://studies.cs.helsinki.fi/exampleapp/notes
     activate server
     server-->browser: HTML file
@@ -18,8 +23,7 @@ sequenceDiagram
     server-->browser: the JavaScript file
     deactivate serve
 
-    browser -->server: POST https://studies.cs.helsinki.fi/exampleapp/new_note
-    active servere
-    server-->browser: "Hello"
-    deactive
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
+    activate server
+    server-->>browser: [{ "content": "Hello, is anybody here?", "date": "2023-11-16T16:15:14.254Z" }, ... ]
 ```
